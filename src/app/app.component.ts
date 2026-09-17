@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { DashboardLayoutComponent } from './components/dashboard-layout/dashboard-layout.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [DashboardLayoutComponent],
+  template: `<app-dashboard-layout></app-dashboard-layout>`,
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'chat-frontend';

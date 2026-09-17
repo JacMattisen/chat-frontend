@@ -1,0 +1,83 @@
+<div class="app-container">
+  <mat-toolbar class="dark-blue-header">
+    <span>KiProjekt – KI-gestützter Support Chatbot & Dashboard</span>
+  </mat-toolbar>
+
+  <div class="main-grid">
+    <mat-card class="chat-card">
+      <mat-card-header>
+        <mat-card-title>Live-Support (ID: #9102)</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="chat-body">
+        <!-- ngFor percorre o array de mensagens -->
+        <div
+          *ngFor="let msg of messages"
+          [ngClass]="{ 'user-row': msg.isUser, 'ai-row': !msg.isUser }"
+        >
+          <div
+            class="message-bubble"
+            [ngClass]="{ 'user-bubble': msg.isUser, 'ai-bubble': !msg.isUser }"
+          >
+            <span class="sender-name">{{ msg.sender }}</span>
+            <p>{{ msg.text }}</p>
+            <div *ngIf="msg.intent" class="intent-tag">
+              Intention: <strong>{{ msg.intent }}</strong> ({{
+                msg.confidence! * 100
+              }}% Konfidenz)
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="chat-footer">
+        <mat-form-field appearance="outline" class="chat-input-field">
+          <input
+            matInput
+            [(ngModel)]="userInput"
+            (keyup.enter)="sendMessage()"
+            placeholder="Nachricht eingeben (z.B. Rückerstattung)..."
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            color="primary"
+            (click)="sendMessage()"
+          >
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-form-field>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- ================= LADO DIREITO: DASHBOARD E ESTATÍSTICAS ================= -->
+    <div class="dashboard-panel">
+      <mat-card class="stat-card">
+        <h3>Aktive Konversationen (Heute)</h3>
+        <p class="stat-number">34 <span class="trend">+8%</span></p>
+      </mat-card>
+
+      <!-- Card 2: Intenções Comuns -->
+      <mat-card class="stat-card">
+        <h3>Häufigste KI-Intentionen</h3>
+        <ul class="intent-list">
+          <li><span>Rückerstattung</span> <strong>45%</strong></li>
+          <li><span>Bestellstatus</span> <strong>28%</strong></li>
+          <li><span>Liefertermin</span> <strong>15%</strong></li>
+          <li><span>Technische Frage</span> <strong>12%</strong></li>
+        </ul>
+      </mat-card>
+
+      <!-- Card 3: Agentes Ativos -->
+      <mat-card class="stat-card">
+        <h3>Aktive Agenten (KI + Mensch)</h3>
+        <div class="agent-item">
+          🟢 <strong>KI Support (Bot)</strong> - 34 conv.
+        </div>
+        <div class="agent-item">🟢 Sarah K. - 6 conv.</div>
+        <div class="agent-item">🟢 Tom B. - 4 conv.</div>
+        <div class="agent-item offline">⚪ Eva M. (offline)</div>
+      </mat-card>
+    </div>
+  </div>
+</div>

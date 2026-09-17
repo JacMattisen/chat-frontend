@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+$color-bg-main: #f8fafc;
+$color-card-bg: #ffffff;
+$color-dark-blue: #0f172a;
+$color-accent-blue: #3e8ccb;
+$color-brand-red: #dc2626;
+$color-text-main: #334155;
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $color-bg-main;
+  color: $color-text-main;
+}
+
+.mat-mdc-card {
+  background-color: $color-card-bg !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.brand-red-text {
+  color: $color-brand-red;
+}
+
+.dark-blue-header {
+  background-color: $color-dark-blue;
+  color: #ffffff;
+}
