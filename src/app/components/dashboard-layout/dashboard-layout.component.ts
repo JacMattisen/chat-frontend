@@ -16,6 +16,7 @@ interface Message {
   isUser: boolean;
   intent?: string;
   confidence?: number;
+  options?: string[];
 }
 
 @Component({
@@ -55,9 +56,15 @@ export class DashboardLayoutComponent {
     }
 
     this.messages.push({
-      sender: 'Du',
-      text,
-      isUser: true,
+      sender: 'KiProjekt Bot',
+      text: 'Hallo! Wie kann ich Ihnen heute helfen? Wählen Sie eine Option:',
+      isUser: false,
+      options: [
+        'Rückerstattung beantragen',
+        'Bestellstatus überprüfen',
+        'Produktinformationen erhalten',
+        'Mit Agent sprechen',
+      ],
     });
 
     this.userInput = '';
@@ -87,5 +94,11 @@ export class DashboardLayoutComponent {
         this.isLoading = false;
       },
     });
+  }
+
+  //quando o usuário clica em um botão de resposta rápida
+  onQuickReplySelected(optionText: string): void {
+    this.userInput = optionText;
+    this.sendMessage();
   }
 }

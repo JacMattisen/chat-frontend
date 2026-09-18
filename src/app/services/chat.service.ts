@@ -11,13 +11,13 @@ export interface ChatResponse {
   text: string;
   intent: string;
   confidence: number;
+  options?: string[];
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
-  // Endereço exato do seu controller do Spring Boot que testamos no Postman
   private apiUrl = 'http://localhost:8080/api/chat/send';
 
   constructor(private http: HttpClient) {}

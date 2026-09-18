@@ -27,6 +27,20 @@
               }}% Konfidenz)
             </div>
           </div>
+          <!--bloco dos botoes -->
+          <div
+            class="quick-replies-container"
+            *ngIf="msg.options && msg.options.length > 0"
+          >
+            <button
+              mat-stroked-button
+              color="primary"
+              *ngFor="let option of msg.options"
+              (click)="onQuickReplySelected(option)"
+            >
+              {{ option }}
+            </button>
+          </div>
         </div>
       </mat-card-content>
 
