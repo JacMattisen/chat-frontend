@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 export interface ChatMessageRequest {
   text: string;
@@ -24,6 +25,19 @@ export class ChatService {
 
   sendMessage(text: string): Observable<ChatResponse> {
     const body: ChatMessageRequest = { text };
-    return this.http.post<ChatResponse>(this.apiUrl, body);
+    return this.http
+      .post<ChatResponse>(this.apiUrl, body)
+      .pipe(catchError(this.handleError));
+  }
+
+  //tratamento de erros
+  private handleError(error: HttpErrorResponse) {
+    console.error('Fehler im ChatService aufgetreten:', error);
+    return throwError(
+      () =>
+        new Error(
+          'Verbindungsfehler zum KI-Server. Bitte versuchen Sie es später noch einmal.',
+        ),
+    );
   }
 }

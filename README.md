@@ -72,3 +72,4 @@ ng serve
 This project is a generic, clean-room implementation designed strictly for portfolio and educational demonstration of full-stack engineering proficiency
 
 ![Layout](img/layout.png)
+![Login] (img/login.png)

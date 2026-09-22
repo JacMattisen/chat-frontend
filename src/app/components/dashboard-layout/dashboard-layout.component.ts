@@ -19,6 +19,12 @@ interface Message {
   options?: string[];
 }
 
+//gerencia os dados do painel lateral
+interface IntentStat {
+  intentName: string;
+  percentage: number;
+}
+
 @Component({
   selector: 'app-dashboard-layout',
   standalone: true,
@@ -37,6 +43,14 @@ interface Message {
 export class DashboardLayoutComponent {
   userInput = '';
   isLoading = false;
+
+  //Lista de intencoes mais comuns, igual dito no ep #99
+  commonIntents: IntentStat[] = [
+    { intentName: 'Rückerstattung', percentage: 45 },
+    { intentName: 'Bestellstatus', percentage: 28 },
+    { intentName: 'Liefertermin', percentage: 15 },
+    { intentName: 'Technische Frage', percentage: 12 },
+  ];
 
   messages: Message[] = [
     {
@@ -78,6 +92,7 @@ export class DashboardLayoutComponent {
           isUser: false,
           intent: response.intent,
           confidence: response.confidence,
+          options: response.options,
         });
 
         this.isLoading = false;
@@ -87,7 +102,7 @@ export class DashboardLayoutComponent {
 
         this.messages.push({
           sender: 'System',
-          text: 'Fehler beim Verbinden mit dem Server.',
+          text: error.message, //mensagem de erro la do back, com a frase do tratamento de erros
           isUser: false,
         });
 

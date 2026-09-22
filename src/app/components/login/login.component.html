@@ -1,0 +1,52 @@
+<div class="login-container">
+  <div class="login-card">
+    <form (ngSubmit)="onLogin()" class="login-form">
+      <h1 class="login-title">Anmelden</h1>
+
+      <!-- E-Mail  -->
+      <div class="input-group">
+        <input
+          type="email"
+          placeholder="E-Mail-Adresse"
+          required
+          [(ngModel)]="username"
+          name="username"
+          class="custom-input"
+        />
+        <mat-icon class="input-icon">person</mat-icon>
+      </div>
+
+      <!-- Passwort  -->
+      <div class="input-group">
+        <input
+          type="password"
+          placeholder="Passwort"
+          required
+          [(ngModel)]="password"
+          name="password"
+          class="custom-input"
+        />
+        <mat-icon class="input-icon">lock</mat-icon>
+      </div>
+
+      <!-- Optionen  -->
+      <div class="form-options">
+        <label class="remember-label">
+          <input type="checkbox" class="custom-checkbox" />
+          <span>Angemeldet bleiben</span>
+        </label>
+        <a href="#" class="forgot-link">Passwort vergessen?</a>
+      </div>
+
+      <button type="submit" class="submit-btn">Anmelden</button>
+
+      <!-- registro de Link -->
+      <div class="register-link-container">
+        <p>
+          Noch kein Konto?
+          <a (click)="goToRegister()" class="register-link">Registrieren</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
